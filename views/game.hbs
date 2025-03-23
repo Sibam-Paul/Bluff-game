@@ -1,0 +1,120 @@
+<div class="game-container" role="application" aria-label="Bluff Card Game">
+    <!-- Player info section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="text-center mb-0">Bluff Game Room</h1>
+                </div>
+                <div class="card-body">
+                    <div id="player-status" class="alert alert-info" role="status" aria-live="polite">
+                        Waiting for game to start...
+                    </div>
+                    <div id="game-notification" class="alert alert-warning d-none" role="alert" aria-live="assertive"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Players container -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-secondary text-white">
+                    <h2 class="mb-0">Players</h2>
+                </div>
+                <div class="card-body">
+                    <div class="playersContainer" id="player-container" role="region" aria-label="Players in the game"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card container -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h2 class="mb-0">Your Cards</h2>
+                </div>
+                <div class="card-body">
+                    <div class="cardsContainer" id="card-container" role="region" aria-label="Your cards"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game actions -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h2 class="mb-0">Game Actions</h2>
+                </div>
+                <div class="card-body">
+                    <div class="buttonContainer d-flex justify-content-between">
+                        <button id="place-btn" class="btn btn-success btn-lg" type="button" onclick="placeCards()" disabled aria-label="Place selected cards">Place</button>
+                        <button id="raise-btn" class="btn btn-danger btn-lg" type="button" onclick="raiseCards()" disabled aria-label="Challenge the last play">Raise</button>
+                        <button id="pass-btn" class="btn btn-warning btn-lg" type="button" onclick="passAction()" disabled aria-label="Pass your turn">Pass</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Played cards -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">Played Cards</h2>
+                </div>
+                <div class="card-body">
+                    <div class="cardsContainer" id="container-played" role="region" aria-label="Cards played in the current round"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keyboard shortcuts -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-secondary text-white">
+                    <h2 class="mb-0">Keyboard Shortcuts</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                <li><strong>J</strong> - Place cards</li>
+                                <li><strong>F</strong> - Raise (challenge)</li>
+                                <li><strong>;</strong> - Pass turn</li>
+                                <li><strong>.</strong> - Say selected cards</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li><strong>[</strong> - Select first card in hand</li>
+                                <li><strong>]</strong> - Select last card in hand</li>
+                                <li><strong>Z</strong> - Say last game play</li>
+                                <li><strong>0</strong> - Say all cards as sets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Timer visualization for raise actions -->
+<div id="raise-timer" class="progress raise-timer d-none position-fixed bottom-0 start-0 end-0">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+</div>
+
+<!-- Audio elements for accessibility -->
+<audio id="card-placed-sound" src="/sounds/cards-placed.mp3" preload="auto"></audio>
+<audio id="card-raised-sound" src="/sounds/cards-raised.mp3" preload="auto"></audio>
+<audio id="shuffle-sound" src="/sounds/cards-shuffling.mp3" preload="auto"></audio>
+<audio id="raise-timer-sound" src="/sounds/raise-time.mp3" preload="auto"></audio>

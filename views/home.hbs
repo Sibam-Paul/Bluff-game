@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h1 class="text-center mb-0">Accessible Bluff - Home</h1>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <p class="lead">Choose an option to start playing</p>
+                </div>
+                
+                <div class="d-grid gap-3 mb-4">
+                    <a href="/game" class="btn btn-success btn-lg" role="button" aria-label="Join a game without bots">
+                        Join Game Room
+                    </a>
+                    
+                    <div class="card mb-3">
+                        <div class="card-header bg-info text-white">
+                            <h2 class="h5 mb-0">Play with AI Bot</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="bot-form" action="/game-with-bot" method="get">
+                                <div class="mb-3">
+                                    <label for="bot-difficulty" class="form-label">Bot Difficulty</label>
+                                    <select id="bot-difficulty" name="difficulty" class="form-select" aria-describedby="difficultyHelp">
+                                        <option value="easy">Beginner (Easy)</option>
+                                        <option value="medium" selected>Intermediate (Normal)</option>
+                                        <option value="hard">Advanced (Hard)</option>
+                                    </select>
+                                    <div id="difficultyHelp" class="form-text">
+                                        Choose the AI difficulty level
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100" aria-label="Play with AI bot">
+                                    Play with Bot
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <button id="instructions-btn" class="btn btn-info btn-lg" aria-label="Show game instructions">
+                        Game Instructions
+                    </button>
+                </div>
+                
+                <div id="instructions-panel" class="mt-4 d-none">
+                    <h2>How to Play Bluff</h2>
+                    <ol>
+                        <li>All cards are distributed equally among players</li>
+                        <li>Players take turns placing cards face down</li>
+                        <li>You must announce the value of the cards you place</li>
+                        <li>You can "bluff" by placing cards that don't match your announcement</li>
+                        <li>Other players can challenge your play if they think you're bluffing</li>
+                        <li>If the challenge is correct, you take all the played cards</li>
+                        <li>If the challenge is wrong, the challenger takes all the played cards</li>
+                        <li>The first player to get rid of all their cards wins</li>
+                    </ol>
+                    
+                    <h3>Keyboard Shortcuts</h3>
+                    <ul>
+                        <li><strong>J</strong> - Place cards</li>
+                        <li><strong>F</strong> - Raise (challenge)</li>
+                        <li><strong>;</strong> - Pass turn</li>
+                        <li><strong>.</strong> - Say selected cards</li>
+                        <li><strong>[</strong> - Select first card in hand</li>
+                        <li><strong>]</strong> - Select last card in hand</li>
+                        <li><strong>Z</strong> - Say last game play</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('instructions-btn').addEventListener('click', function() {
+        const instructionsPanel = document.getElementById('instructions-panel');
+        instructionsPanel.classList.toggle('d-none');
+        
+        // Accessibility: Announce that instructions are visible
+        if (!instructionsPanel.classList.contains('d-none')) {
+            this.setAttribute('aria-expanded', 'true');
+            instructionsPanel.setAttribute('aria-hidden', 'false');
+        } else {
+            this.setAttribute('aria-expanded', 'false');
+            instructionsPanel.setAttribute('aria-hidden', 'true');
+        }
+    });
+</script>
